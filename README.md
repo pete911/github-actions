@@ -45,12 +45,6 @@ the push is for tag that is prefixed with `v`.
 
 `pete911/github-actions/.github/workflows/docker-scan.yml@main` builds and scans docker image.
 
-### inputs
-
-| input      | default | description                                        |
-|------------|---------|----------------------------------------------------|
-| build-args | N/A     | docker build args (see --build-arg in docker docs) |
-
 ## go
 
 `pete911/github-actions/.github/workflows/go.yml@main` runs unit tests, go vet and trivy scan.
