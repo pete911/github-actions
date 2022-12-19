@@ -1,0 +1,57 @@
+name: Go
+
+on:
+  workflow_call:
+    secrets:
+      PUBLIC_REPO_TOKEN:
+        description: "public repo token, needed to push to brew tap"
+        required: false
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: setup go
+        uses: actions/setup-go@v3
+        with:
+          go-version:  1.19.4
+  unit-test:
+    needs: checkout
+    steps:
+      - name: unit test
+        run: go test -v ./...
+  go-vet:
+    needs: checkout
+    steps:
+      - name: go vet
+        run: go vet ./...
+  scan:
+    needs: checkout
+    steps:
+      - name: trivy scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          exit-code: "1"
+          ignore-unfixed: true
+          severity: "CRITICAL,HIGH"
+  release:
+    needs:
+      - unit-test
+      - go-vet
+      - scan
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+        name: go releaser
+        uses: goreleaser/goreleaser-action@v3
+        with:
+          distribution: goreleaser
+          version: latest
+          args: release --rm-dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_TOKEN }}
