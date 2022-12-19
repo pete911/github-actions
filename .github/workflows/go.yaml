@@ -47,7 +47,7 @@ jobs:
       - scan
     if: startsWith(github.ref, 'refs/tags/v')
     steps:
-        name: go releaser
+      - name: go releaser
         uses: goreleaser/goreleaser-action@v3
         with:
           distribution: goreleaser
