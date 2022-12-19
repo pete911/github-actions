@@ -13,18 +13,18 @@ permissions:
 
 jobs:
   go:
-    uses: pete911/github-actions/.github/workflows/go.yaml@main
+    uses: pete911/github-actions/.github/workflows/go.yml@main
   go-release:
     needs:
       - go
-    uses: pete911/github-actions/.github/workflows/go-releaser.yaml@main
+    uses: pete911/github-actions/.github/workflows/go-releaser.yml@main
     secrets:
       PUBLIC_REPO_TOKEN: ${{ secrets.PUBLIC_REPO_TOKEN }}
 ```
 
 ## go
 
-`pete911/github-actions/.github/workflows/go.yaml@main` runs unit tests, go vet and trivy scan.
+`pete911/github-actions/.github/workflows/go.yml@main` runs unit tests, go vet and trivy scan.
 
 ### inputs
 
@@ -34,7 +34,7 @@ jobs:
 
 ## go-releaser
 
-`pete911/github-actions/.github/workflows/go-releaser.yaml@main` Runs go releaser if the push is for tag that is
+`pete911/github-actions/.github/workflows/go-releaser.yml@main` Runs go releaser if the push is for tag that is
 prefixed with `v`.
 
 ### secrets
