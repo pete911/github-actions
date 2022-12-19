@@ -2,13 +2,19 @@ name: Go
 
 on:
   workflow_call:
+    inputs:
+      go-version:
+        description: "go version"
+        default: "1.19.4"
+        required: false
+        type: string
     secrets:
       PUBLIC_REPO_TOKEN:
         description: "public repo token, needed to push to brew tap"
         required: false
 
 jobs:
-  checkout:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: check out
@@ -18,23 +24,18 @@ jobs:
       - name: setup go
         uses: actions/setup-go@v3
         with:
-          go-version:  1.19.4
-  unit-test:
-    needs: checkout
-    runs-on: ubuntu-latest
-    steps:
-      - name: unit test
+          go-version:  ${{ inputs.go-version }}
+      - name: go test
         run: go test -v ./...
-  go-vet:
-    needs: checkout
-    runs-on: ubuntu-latest
-    steps:
       - name: go vet
         run: go vet ./...
   scan:
-    needs: checkout
     runs-on: ubuntu-latest
     steps:
+      - name: check out
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: trivy scan
         uses: aquasecurity/trivy-action@master
         with:
@@ -45,12 +46,15 @@ jobs:
           severity: "CRITICAL,HIGH"
   release:
     needs:
-      - unit-test
-      - go-vet
+      - test
       - scan
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     steps:
+      - name: check out
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: go releaser
         uses: goreleaser/goreleaser-action@v3
         with:

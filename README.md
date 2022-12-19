@@ -23,6 +23,12 @@ jobs:
 `pete911/github-actions/.github/workflows/go.yaml@main` runs unit tests, go vet and trivy scan. If the commit contains
 tag with `v` prefix, it also runs go releaser.
 
+### inputs
+
+| input        | default | description |
+|--------------|---------|-------------|
+| go-version   | 1.19.4  | go version  |
+
 ### secrets
 
 | input             | default | description                                   |
