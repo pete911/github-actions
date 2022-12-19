@@ -14,20 +14,28 @@ permissions:
 jobs:
   go:
     uses: pete911/github-actions/.github/workflows/go.yaml@main
+  go-release:
+    needs:
+      - go
+    uses: pete911/github-actions/.github/workflows/go-releaser.yaml@main
     secrets:
       PUBLIC_REPO_TOKEN: ${{ secrets.PUBLIC_REPO_TOKEN }}
 ```
 
 ## go
 
-`pete911/github-actions/.github/workflows/go.yaml@main` runs unit tests, go vet and trivy scan. If the commit contains
-tag with `v` prefix, it also runs go releaser.
+`pete911/github-actions/.github/workflows/go.yaml@main` runs unit tests, go vet and trivy scan.
 
 ### inputs
 
 | input        | default | description |
 |--------------|---------|-------------|
 | go-version   | 1.19.4  | go version  |
+
+## go-releaser
+
+`pete911/github-actions/.github/workflows/go-releaser.yaml@main` Runs go releaser if the push is for tag that is
+prefixed with `v`.
 
 ### secrets
 
