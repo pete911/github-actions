@@ -1,5 +1,6 @@
 # github-actions
-Reusable [workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows) for GitHub actions.
+Reusable [workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows) for GitHub actions. This
+makes it easier to maintain GitHub actions across projects.
 
 ## example
 
@@ -22,6 +23,34 @@ jobs:
       PUBLIC_REPO_TOKEN: ${{ secrets.PUBLIC_REPO_TOKEN }}
 ```
 
+## docker-push
+
+`pete911/github-actions/.github/workflows/docker-push.yml@main` build and push docker image to dockerhub, but only if
+the push is for tag that is prefixed with `v`.
+
+### inputs
+
+| input      | default | description                                        |
+|------------|---------|----------------------------------------------------|
+| build-args | N/A     | docker build args (see --build-arg in docker docs) |
+
+### secrets
+
+| input              | default | description                 |
+|--------------------|---------|-----------------------------|
+| DOCKERHUB_USERNAME | N/A     | dockerhub registry username |
+| DOCKERHUB_TOKEN    | N/A     | dockerhub registry token    |
+
+## docker-scan
+
+`pete911/github-actions/.github/workflows/docker-scan.yml@main` builds and scans docker image.
+
+### inputs
+
+| input      | default | description                                        |
+|------------|---------|----------------------------------------------------|
+| build-args | N/A     | docker build args (see --build-arg in docker docs) |
+
 ## go
 
 `pete911/github-actions/.github/workflows/go.yml@main` runs unit tests, go vet and trivy scan.
@@ -34,8 +63,8 @@ jobs:
 
 ## go-releaser
 
-`pete911/github-actions/.github/workflows/go-releaser.yml@main` Runs go releaser if the push is for tag that is
-prefixed with `v`.
+`pete911/github-actions/.github/workflows/go-releaser.yml@main` runs go releaser, but only if the push is for tag that
+is prefixed with `v`.
 
 ### secrets
 

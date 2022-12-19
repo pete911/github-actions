@@ -1,4 +1,4 @@
-name: Go
+name: go
 
 on:
   workflow_call:
@@ -13,26 +13,32 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: check out
+      -
+        name: checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: setup go
+      -
+        name: setup go
         uses: actions/setup-go@v3
         with:
           go-version:  ${{ inputs.go-version }}
-      - name: go test
+      -
+        name: go test
         run: go test -v ./...
-      - name: go vet
+      -
+        name: go vet
         run: go vet ./...
   scan:
     runs-on: ubuntu-latest
     steps:
-      - name: check out
+      -
+        name: checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: trivy scan
+      -
+        name: trivy scan
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
