@@ -5,9 +5,9 @@ on:
     inputs:
       build-args:
         description: "docker build args (see --build-arg in docker docs)"
-        default: ""
+        default: []
         required: false
-        type: string
+        type: list
     secrets:
       DOCKERHUB_USERNAME:
         description: "dockerhub registry username"
