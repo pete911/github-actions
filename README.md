@@ -53,7 +53,7 @@ the push is for tag that is prefixed with `v`.
 
 | input        | default | description |
 |--------------|---------|-------------|
-| go-version   | 1.19.4  | go version  |
+| go-version   | 1.20.1  | go version  |
 
 ## go-releaser
 
