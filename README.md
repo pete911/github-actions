@@ -60,6 +60,12 @@ the push is for tag that is prefixed with `v`.
 `pete911/github-actions/.github/workflows/go-releaser.yml@main` runs go releaser, but only if the push is for tag that
 is prefixed with `v`.
 
+### inputs
+
+| input        | default | description |
+|--------------|---------|-------------|
+| go-version   | 1.21.0  | go version  |
+
 ### secrets
 
 | input             | default | description                                   |

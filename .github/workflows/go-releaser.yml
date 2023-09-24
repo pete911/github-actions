@@ -6,6 +6,12 @@ on:
       PUBLIC_REPO_TOKEN:
         description: "public repo token, needed to push to brew tap"
         required: false
+    inputs:
+      go-version:
+        description: "go version"
+        default: "1.21.0"
+        required: false
+        type: string
 
 jobs:
   release:
@@ -17,6 +23,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      -
+        name: setup go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ inputs.go-version }}
+      -
+        name: go version
+        run: go version
       -
         name: go releaser
         uses: goreleaser/goreleaser-action@v5

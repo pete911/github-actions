@@ -24,6 +24,9 @@ jobs:
         with:
           go-version:  ${{ inputs.go-version }}
       -
+        name: go version
+        run: go version
+      -
         name: go test
         run: go test -v ./...
       -
