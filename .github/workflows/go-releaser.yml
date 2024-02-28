@@ -9,7 +9,7 @@ on:
     inputs:
       go-version:
         description: "go version"
-        default: "1.21.0"
+        default: "1.22.0"
         required: false
         type: string
 
