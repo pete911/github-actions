@@ -62,9 +62,10 @@ is prefixed with `v`.
 
 ### inputs
 
-| input        | default | description |
-|--------------|---------|-------------|
-| go-version   | 1.22.0  | go version  |
+| input      | default | description                                                |
+|------------|---------|------------------------------------------------------------|
+| go-version | 1.22.0  | go version                                                 |
+| krew       | false   | whether to release to krew (project needs .krew.yaml file) |
 
 ### secrets
 

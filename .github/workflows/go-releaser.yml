@@ -12,6 +12,11 @@ on:
         default: "1.22.0"
         required: false
         type: string
+      krew:
+        description: "whether to release to krew (project needs .krew.yaml file)"
+        default: false
+        required: false
+        type: boolean
 
 jobs:
   release:
@@ -40,3 +45,7 @@ jobs:
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_TOKEN }}
+      -
+        if: ${{ inputs.krew }}
+        name: krew releaser
+        uses: rajatjindal/krew-release-bot@v0.0.46
