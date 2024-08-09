@@ -62,10 +62,14 @@ is prefixed with `v`.
 
 ### inputs
 
-| input      | default | description                                                |
-|------------|---------|------------------------------------------------------------|
-| go-version | 1.22.0  | go version                                                 |
-| krew       | false   | whether to release to krew (project needs .krew.yaml file) |
+| input      | default | description                                                     |
+|------------|---------|-----------------------------------------------------------------|
+| go-version | 1.22.0  | go version                                                      |
+| krew       | false   | whether to release to krew (project needs .krew.tmpl.yaml file) |
+
+If `krew` input is set to `true`, project has to have `.krew.tmpl.yaml` file present. This file can additionaly use
+`${tag}` and `${version}` placeholders. `tag` will be replaced for git tag and `version` is the same as `tag`, but
+with `v` prefix stripped (if present).
 
 ### secrets
 

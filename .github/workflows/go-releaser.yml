@@ -47,5 +47,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_TOKEN }}
       -
         if: ${{ inputs.krew }}
+        name: create crew file
+        run: tag=${GITHUB_REF#refs/*/} version=${GITHUB_REF#refs/*/v} envsubst < .krew.tmpl.yaml > .krew.yaml
+      -
+        if: ${{ inputs.krew }}
         name: krew releaser
         uses: rajatjindal/krew-release-bot@v0.0.46
