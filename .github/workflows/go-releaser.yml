@@ -9,7 +9,7 @@ on:
     inputs:
       go-version:
         description: "go version"
-        default: "1.23.1"
+        default: "1.23.4"
         required: false
         type: string
       krew:
@@ -28,6 +28,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false
       -
         name: setup go
         uses: actions/setup-go@v5
