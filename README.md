@@ -53,7 +53,7 @@ the push is for tag that is prefixed with `v`.
 
 | input        | default | description |
 |--------------|---------|-------------|
-| go-version   | 1.23.1  | go version  |
+| go-version   | 1.24.0  | go version  |
 
 ## go-releaser
 
@@ -64,7 +64,7 @@ is prefixed with `v`.
 
 | input      | default | description                                                     |
 |------------|---------|-----------------------------------------------------------------|
-| go-version | 1.23.1  | go version                                                      |
+| go-version | 1.24.0  | go version                                                      |
 | krew       | false   | whether to release to krew (project needs .krew.tmpl.yaml file) |
 
 If `krew` input is set to `true`, project has to have `.krew.tmpl.yaml` file present. This file can additionaly use
