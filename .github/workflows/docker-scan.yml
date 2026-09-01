@@ -9,7 +9,7 @@ jobs:
     steps:
       -
         name: checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -19,7 +19,7 @@ jobs:
           docker build -t ${{ github.repository }}:${{ github.sha }} .
       -
         name: trivy scan
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: "${{ github.repository }}:${{ github.sha }}"
           exit-code: "1"
